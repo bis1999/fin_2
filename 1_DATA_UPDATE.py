@@ -284,28 +284,6 @@ latest_date = max(noaa_station['DATE'])
 st.write("Latest Data Available: {} ".format(latest_date))
 
 
-st.session_state["NOAA_data_soyabean"] =  noaa_station
-
-if st.button("Update NOAA Stations"):
-   
-    noaa_station = station_update()
-
-    today = date.today()
-
-    noaa_station.to_csv("NOAA_GLOBAL/{}.csv".format(today))
-
-
-   
-   #st.write("Natural Oil Weekly on {}".format(str(today)))
-
-    #today = date.today()
-    #st.write("NOAA on {}".format(str(today)))
-else:
-    noaa_station= pd.read_csv("NOAA_GLOBAL/{}.csv".format(data_Week))
-
-latest_date = max(noaa_station['DATE'])
-st.write("Latest Data Available: {} ".format(latest_date))
-
 
 st.session_state["NOAA_data_soyabean"] =  noaa_station
 
