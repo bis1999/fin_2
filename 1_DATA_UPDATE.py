@@ -258,7 +258,33 @@ download_placeholder = st.empty()
     
 
 
+noaa_datasets = glob.glob('NOAA_GLOBAL/*.csv')
+noaa_week = [i.split(".")[0].split("/")[1] for i in noaa_datasets]
+noaa_date = max(noaa_week)
 
+
+if st.button("Update NOAA Stations"):
+   
+    noaa_station = station_update()
+
+    today = date.today()
+
+    noaa_station.to_csv("NOAA_GLOBAL/{}.csv".format(today))
+
+
+   
+   #st.write("Natural Oil Weekly on {}".format(str(today)))
+
+    #today = date.today()
+    #st.write("NOAA on {}".format(str(today)))
+else:
+    noaa_station= pd.read_csv("NOAA_GLOBAL/{}.csv".format(noaa_date))
+
+latest_date = max(noaa_station['DATE'])
+st.write("Latest Data Available: {} ".format(latest_date))
+
+
+st.session_state["NOAA_data_soyabean"] =  noaa_station
 
 if st.button("Update NOAA Stations"):
    
